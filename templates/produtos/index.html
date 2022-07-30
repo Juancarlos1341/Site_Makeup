@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+{% include 'partials/_alertas.html' %}
+	<main>
+		<section>
+			<div class="caixa">
+				<h1 class="titulos"> Destaques de Produtos </h1>
+					<ul class="produtos">
+						{% if produtos %}
+						{% for produto in produtos %}
+						{% if produto.aparecer_no_desteque %}
+						<li>
+							<a href="{% url 'produto' produto.id %}">
+								{% if produto.imagem_produto == '' %}
+									<img src="{% static 'icones/SemImagem.bmp' %}">
+								{% else %}
+									<img src="{{ produto.imagem_produto.url }}">
+								{% endif %}
+								{% if produto.oferta %}
+								<div class="promocao">
+									<p class="titulo-promocao"> Oferta </p>
+								</div>
+								{% endif %}
+								{% if produto.promocao %}
+								<div class="promocao">
+									<p class="titulo-promocao"> Promoção </p>
+								</div>
+								{% endif %}
+								<h1 class="nome-produto"> {{ produto.nome_produto }}</h1>
+								<p class="produto-preco">R$ {{produto.preco}}</p>
+							</a>
+						</li>
+						{% endif %}
+						{% endfor %}
+					</ul>
+				{% else %}
+				<h1 class="titulos"> Não a produtos em destaque. </h1>
+				{% endif %}
+			</div>
+		</section>
+		{% if carrossel %}
+		{% for imagem in carrossel %}
+		<section>
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+				<ol class="carousel-indicators">
+				  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" style="margin:auto; width: 75%;">
+				  <div class="carousel-item active">
+					<img class="d-block w-100" style="max-height: 600px;" src="{{ imagem.carrosel_1.url }}" alt="First slide">
+				  </div>
+				  <div class="carousel-item">
+					<img class="d-block w-100" style="max-height: 600px;" src="{{ imagem.carrosel_2.url }}" alt="Second slide">
+				  </div>
+				  <div class="carousel-item">
+					<img class="d-block w-100" style="max-height: 600px;" src="{{ imagem.carrosel_3.url }}" alt="Third slide">
+				  </div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				  <span class="sr-only"></span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				  <span class="sr-only"></span>
+				</a>
+			  </div>
+		</section>
+		{% endfor %}
+		{% else %}
+		<section>
+		</section>
+		{% endif %}
+			<div class="caixa-dica">
+				<h1 class="titulos">Dicas da Loja </h1>
+				<hr class="linha-horizontal">
+				{% if dicas %}
+				<ul class="dicas">
+					{% for dica in dicas %}
+					<li>
+						<div class="card" style="width: 12rem;">
+							<img class="card-img-top" src="{{ dica.imagem.url }}" alt="Card image cap">
+							<h5 class="card-title" style="font-weight: bold"> {{ dica.produto }} </h5>
+    						<p class="card-text">{{ dica.descricao }}</p>
+						</div>
+					</li>
+					{% endfor %}
+				{% else %}
+				<h1 class="titulos">Não a dicas no site hoje.</h1>
+				{% endif %}
+		</section>
+	</main>
+{% endblock %}

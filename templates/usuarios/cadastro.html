@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+	<main>
+		<h1 class="titulo-cadastro">Numero do carrinho:{{carrinho.numero}}</h1>
+		<h1 class="titulo-cadastro">Valor total da compra:{{carrinho.valor_total}}</h1>
+		<form class="for-casdatro-login" method="POST" action="{% url 'finalizar' %}">
+			{% csrf_token %}
+			<img src="{% static 'icones/perfil.png' %}" class="icones"><label>Nome Completo:<input type="text" name="pessoa-nome" required class="input-compra"></label>
+			<img src="{% static 'icones/casa.png' %}" class="icones"><label>Endereço:<input type="text" name="endereco" required class="input-compra"></label>
+			<img src="{% static 'icones/telefone.png' %}" class="icones"><label>N° de Telefone:<input type="text" name="telefone" required class="input-compra"></label>
+			<input type="submit" value="Finalizar" class="btn btn-secondary">
+			<a href="{% url 'carrinho' %}" class="btn btn-danger">Voltar a carrinho</a>
+		</form>
+	</main>
+{% endblock %}

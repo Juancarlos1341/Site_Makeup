@@ -1,0 +1,20 @@
+{% load static %}
+
+{% if produto.imagem_produto == '' %}
+			<img src="{% static 'icones/SemImagem.bmp' %}"class="imagem-produto">
+		{% else %}
+			<img src="{{ produto.imagem_produto.url }}" class="imagem-produto">
+		{% endif %}
+
+		<section class="sessao-descricao">
+
+			<h1 class="titulo-produto">{{ produto.nome_produto }}</h1>
+
+			<h2 class="categoria-produto">Categoria : {{ produto.categoria }}</h2>
+
+			<h2 class="titulo-descricao">Descrição: </h2>
+			<p class="descricao-produto">{{ produto.descricao }}</p>
+
+			<h2 class="preco-produto"> Valor : R$ {{ produto.preco }}</h2>
+
+			<h2 class="quantidade-produto">Estoque da loja: {{produto.estoque}} Unidades</h2>

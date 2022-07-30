@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+
+    <main>
+		<h1 class="titulos">Listas de Categorias</h1>
+		{% if categorias %}
+        <table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Nome categoria</th>
+						<th>Acessar Categoria</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for categoria in categorias %}
+					<tr>
+						<td>{{ categoria.nome }}</td>
+						<td>
+							<a href="{% url 'listagem_podutos_por_categoria' categoria.id %}"  class="btn btn-light">Acessar</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+        </table>
+		{% else %}
+		<h1>Não a categorias.</h1>
+		{% endif %}
+	</main>
+{% endblock %}

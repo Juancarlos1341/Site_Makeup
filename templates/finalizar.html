@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+	<main>
+		<h1 class="titulos">Pagamento com Suscesso</h1>
+		<h2 class="titulos"> As informoçoes da compra</h2>
+		<h1 class="titulos">Carrinho de Compra</h1>
+		{% if carrinho %}
+
+
+		<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Produto</th>
+						<th>Quantidade</th>
+						<th>Preço Total</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for item in carrinho %}
+					<tr>
+						<td>{{ item.produtos }}</td>
+						<td>{{ item.quantidade }}</td>
+						<td>{{ item.preco_final }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% for valor_total in preco %}
+			<h2 class="titulos">Total da Compra : R$ {{ valor_total.valor_total }}</h2>
+			{% endfor %}
+			<a class="btn btn-success" href="{% url 'index' %}">Voltar a Pagina Pricipal</a>
+		{% else %}
+		<h2 class="titulos">Não a produtos em seu carrinho.</h2>
+		{% endif %}
+	</main>
+{% endblock %}

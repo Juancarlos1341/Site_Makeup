@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+	<main>
+		{% include 'partials/_produto.html' %}
+
+			<form action="{% url 'adicionar' produto.id %}" class="for-comprar">
+				<label class="quantidade-inp"> Quantidade:</label><input type="number" name="quantidade" min=1 max={{produto.estoque}} class="input-compra" required></label>
+				<input type="submit" value="Adicionar no carrinho" class="btn btn-dark" style="margin: 1rem">
+			</form>
+	</main>
+
+{% endblock %}

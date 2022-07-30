@@ -1,0 +1,65 @@
+{% load static %}
+
+<header>
+    <div class="caixa-logo">
+        <img src="{% static 'icones/logo.jpeg' %}" class="logo">
+        <div class="mobile">
+            <div class="desktop-hide">
+                <nav class="menu">
+                    <input type="checkbox" id="chec">
+                    <label for="chec" class="links">Menu</label>				
+                    <nav class="menu-rolativo">
+                        <ul>
+                            <li>
+                                <a href="{% url 'lista_de_categoria' %}" class="opcao"><img src="{% static 'icones/categoria.png' %}" class="icones">Categorias</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'index' %}" class="opcao"><img src="{% static 'icones/inicio.png' %}" class="icones">Incio</a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/makeeup.store_/" class="opcao"><img src="{% static 'icones/whatsapp.png' %}" class="icones">Contato</a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/makeeup.store_/" class="opcao"><img src="{% static 'icones/instagram.png' %}" class="icones">Instragram</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'carrinho' %}" class="opcao"><img src="{% static 'icones/carrinho.png' %}" class="icones">Carrinho de compras</a>
+                            </li>
+                            <li>
+                                {% if user.is_superuser %}
+                                <a href="{% url 'admin:index' %}" class="opcao"><img src="{% static 'icones/admin.png' %}" class="icones">Admin</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+        </div>
+        <div class="mobile-hide">
+            <nav class="menu">
+                <ul>
+                    <li>
+                        <a href="{% url 'lista_de_categoria' %}" class="opcao"><img src="{% static 'icones/categoria.png' %}" class="icones">Categorias</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'index' %}" class="opcao"><img src="{% static 'icones/inicio.png' %}" class="icones">Incio</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/makeeup.store_/" class="opcao"><img src="{% static 'icones/whatsapp.png' %}" class="icones">Contato</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/makeeup.store_/" class="opcao"><img src="{% static 'icones/instagram.png' %}" class="icones">Instragram</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'carrinho' %}" class="opcao"><img src="{% static 'icones/carrinho.png' %}" class="icones">Carrinho de compras</a>
+                    </li>
+                    <li>
+                        {% if user.is_superuser %}
+                            <a href="{% url 'admin:index' %}" class="opcao"><img src="{% static 'icones/admin.png' %}" class="icones">Admin</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
